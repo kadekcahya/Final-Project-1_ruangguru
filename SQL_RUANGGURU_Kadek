@@ -1,0 +1,43 @@
+--Lihat Data
+SELECT * from marketing
+WHERE created_at > '2021-01-01 00:00:00'
+order by created_at asc
+
+SELECT * from event
+SELECT * from inventory
+
+--Lihat Unique Data 
+SELECT DISTINCT country from marketing
+order by country desc
+
+--Lihat Group by data
+SELECT first_name,count(first_name) from marketing
+GROUP BY first_name
+ORDER BY count desc
+limit 5
+
+
+--JOIN DATA
+SELECT 
+    a.created_at tanggal,
+    a.id,
+    a.first_name nama,
+    a.age usia,
+    a.gender jenis_kelamin,
+    a.country negara,
+    a.state state,
+    a.city kota,
+    a.traffic_source ,
+    a.longitude,
+    a.latitude,
+    c.product_category category,
+    c.product_brand brand,
+    c.product_department departement,
+    c.cost harga_produksi,
+    c.product_retail_price harga_retail
+    FROM marketing a
+ left JOIN 
+    inventory c
+    ON a.id = c.id
+WHERE a.created_at > '2021-01-01 00:00:00' 
+ORDER BY a.created_at 
